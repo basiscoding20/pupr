@@ -1,0 +1,93 @@
+body{
+background-color: rgb(224,224,224);
+}
+.navbar-brand{
+  font-family: viga;
+  font-size: 30px;
+}
+#map{
+  height: 250px;
+  width: auto;
+  border-radius: 13px;
+}/* navbar */
+.nav-link{
+  font-family: viga;
+  font-size: 15px;
+}
+.navbar-expand-lg{
+  background-color: white;
+}
+#tombol{
+  color: white;
+  border-radius: 14px;
+}
+
+.container-Second {
+  margin-top: 100px;
+  height: 10px;
+}
+.card-info{
+  height: 270px;
+}
+.logo{
+  width: 150px;
+}
+div .hr{
+  width: auto;
+  background-color: grey;
+  height: 10px;
+}
+.card-content-1{
+  overflow: hidden;
+  height: 200px;
+  opacity: 1;
+  transition: 0.5;
+  box-shadow: inset 0 -100px 10px -10px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-caption h5,.carousel-caption p{
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+}
+.card-content-1:hover{
+  opacity: 0.9;
+}
+#card{
+
+  background-size: 700px 200px ;
+  background-repeat: no-repeat;
+}
+.bg-grey{
+  background-color: grey;
+}
+
+@media (max-width: 500px) {
+  #card{
+    background-size: 500px 200px ;
+    background-repeat: no-repeat;
+  }
+  .card-body h2 {
+    margin-top: 0;
+    line-height: 100px;
+  }
+  }
+  .card .active{
+    background-color: grey;
+    border: none;
+  }
+
+.card-content-1 .card-title, .card-content-1 .card-body p{
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+.card-body h2 {
+  margin-top: 70px;
+}
+.footer {
+  background-color: grey;
+  padding: 10px;
+  height: 50px;
+}
+.footer h5 {
+  color: white;
+  font-family: viga;
+}
