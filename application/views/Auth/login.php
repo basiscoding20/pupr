@@ -38,7 +38,10 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="<?= base_url('Auth/registrasi') ?>">Forgot Password?</a>
+                    <a class="small" href="<?= base_url('Auth/registrasi') ?>">Registrasi</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="<?= base_url('Auth/lupaPassword') ?>">Forgot Password?</a>
                   </div>
                 </div>
               </div>

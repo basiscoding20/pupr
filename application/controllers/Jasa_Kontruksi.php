@@ -14,6 +14,9 @@ class Jasa_Kontruksi extends CI_Controller {
 public function index()
 {
   $data['user']= $this->User_->getUser($this->session->userdata('email'));
+  if ($data['user']['akses'] != 1) {
+  redirect('auth/login');
+  }
   $data['jasa']=  $this->db->get('jasa_Kontruksi')->result_array();
 
   $this->form_validation->set_rules('nama_jasa','nama_jasa','required|trim',[
@@ -87,7 +90,33 @@ public function hapus($id)
     </div>');
     redirect('jasa_Kontruksi');
 }
-
+public function password()
+{
+  $data['user']= $this->User_->getUser($this->session->userdata('email'));
+  $this->form_validation->set_rules('password1','Password', 'required|trim|min_length[4]|matches[password2]',[
+    'required' => 'Tidak boleh kosong',
+    'min_length' => 'Terlalu pendek',
+    'matches' => 'Password tidak sama'
+  ]);
+  $this->form_validation->set_rules('password2','Password', 'required|trim|matches[password1]');
+  if ($this->form_validation->run() == false) {
+    $data['title'] = 'Ubah Password';
+    $this->load->view('Templates/header', $data);
+    $this->load->view('Templates/sidebar', $data);
+    $this->load->view('Templates/topbar', $data);
+    $this->load->view('auth/changePassword', $data);
+    $this->load->view('Templates/footer', $data);
+    $this->load->view('Templates/javascript', $data);
+  }else {
+    $this->db->set('password', password_hash($this->input->post('password1'), PASSWORD_DEFAULT));
+    $this->db->where('id_user', $this->input->post('id_user'));
+    $this->db->update('user' );
+    $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+      Password  Berhasil diubah !
+        </div>');
+      redirect('auth/logout');
+  }
+}
 
 
 }

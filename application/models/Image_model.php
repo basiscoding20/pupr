@@ -68,6 +68,27 @@ class Image_model extends CI_Model
     }
   }
 
+  public function idProyek()
+    {
+    $this->db->order_by('id_proyek', 'DESC');
+    $cekdb = $this->db->get_where('proyek')->row_array();
+    $header = $cekdb['id_proyek'];
+    $u=date('ymd');
+    if (!$cekdb) {
+      $header = 1;
+      $notrans='P0'.$u.'00'.$header;
+    }else  {
+      $notrans= substr($header,2,6);
+      if ($u != $notrans) {
+        $header = 1;
+        $notrans='P0'.$u.'00'.$header;
+      }else {
+        $header++;
+        $notrans= $header;
+      }
+    }
+    return($notrans);
+    }
 
 
 }

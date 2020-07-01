@@ -96,26 +96,22 @@
                 <thead>
                   <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Kontruksi</th>
-                    <th scope="col">kategori</th>
-                    <th scope="col">luas</th>
-                    <th scope="col">Jembatan</th>
-                    <th scope="col">image</th>
+                    <th scope="col">Kd jalan</th>
+                    <th scope="col">Nama Jalan</th>
+                    <th scope="col">Nama Desa</th>
+                    <th scope="col">Pekerasan</th>
                     <th scope="col">Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
-                <?php $no= 1 ; foreach ($kontruksi as $kontruksi): ?>
+                <?php $no= 1 ; foreach ($jalan as $jalan): ?>
                   <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $kontruksi['id_kontruksi'] ?></td>
-                    <td><?= $kontruksi['kategori'] ?> m</td>
-                    <td><?= $kontruksi['nama_kontruksi'] ?></td>
-                    <td><?= $kontruksi['luas'] ?></td>
-                    <td width="100" >
-                        <a href="#"><img src="<?= base_url('assets/img/kontruksi/'). $kontruksi['image'] ?>" class="img-thumbnail" ></a>
-                    </td>
-                    <td><a href="#"  data-toggle="modal" data-target="#exampleModal" class="badge badge-primary pengaduan" data-id="<?= $kontruksi['id_kontruksi'] ?>">Report</a>|<a href="<?= base_url("auth/view/".$kontruksi['id_kontruksi']) ?>" class="badge badge-secondary" >details</a></td>
+                    <td><?= $jalan['id_jalan'] ?></td>
+                    <td><?= $jalan['nama_jalan'] ?></td>
+                    <td><?= $jalan['nama_desa'] ?></td>
+                    <td><?= $jalan['pekerasan'] ?></td>
+                    <td><a href="#"  data-toggle="modal" data-target="#exampleModal" class="badge badge-primary pengaduan" data-id="<?= $jalan['id_jalan'] ?>">Report</a>|<a href="<?= base_url("auth/view/".$jalan['id_jalan']) ?>" class="badge badge-secondary" >details</a></td>
                   </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -141,12 +137,12 @@
             <div class="row">
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="id_kontruksi" name="id_kontruksi" readonly>
+                    <input type="text" class="form-control" id="id_jalan" name="id_jalan" readonly>
                   </div>
                 </div>
                 <div class="col-sm-9">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="nama_kontruksi" name="nama_kontruksi" readonly>
+                    <input type="text" class="form-control" id="nama_jalan" name="nama_jalan" readonly>
                   </div>
                 </div>
             </div>

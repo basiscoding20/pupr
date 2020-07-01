@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jun 2020 pada 08.59
+-- Waktu pembuatan: 28 Jun 2020 pada 15.17
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -25,6 +25,88 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `desa`
+--
+
+CREATE TABLE `desa` (
+  `id_desa` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_kecamatan` int(3) NOT NULL,
+  `nama_desa` varchar(128) NOT NULL,
+  `alamat_kantor` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `desa`
+--
+
+INSERT INTO `desa` (`id_desa`, `id_user`, `id_kecamatan`, `nama_desa`, `alamat_kantor`) VALUES
+(3, 27, 2, 'petir', 'petirs'),
+(6, 32, 2, 'dede', 'dasfafas'),
+(7, 33, 1, 'kadu jojor', 'jln kadu jojor number 4 '),
+(8, 34, 1, 'sumur', 'deahdasldk');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `image`
+--
+
+CREATE TABLE `image` (
+  `id_image` int(128) NOT NULL,
+  `id_proyek` varchar(128) NOT NULL,
+  `progres` varchar(15) NOT NULL,
+  `image` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `image`
+--
+
+INSERT INTO `image` (`id_image`, `id_proyek`, `progres`, `image`) VALUES
+(31, 'P0200626001', 'Progres 0%', 'client2.png'),
+(32, 'P0200626001', 'Progres 50%', 'man2.jpg'),
+(33, 'P0200626001', 'Progres 100%', 'client3.png'),
+(37, 'P0200626002', 'Progres 0%', 'man1.jpg'),
+(38, 'P0200626002', 'Progres 50%', 'man21.jpg'),
+(39, 'P0200626002', 'Progres 100%', 'man3.jpg'),
+(40, 'P0200628001', 'Progres 0%', 'ss.jpg'),
+(41, 'P0200628001', 'Progres 50%', '2019-06-27.jpg'),
+(42, 'P0200628001', 'Progres 100%', 'asasa.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jalan`
+--
+
+CREATE TABLE `jalan` (
+  `id_jalan` int(11) NOT NULL,
+  `id_desa` int(4) NOT NULL,
+  `nama_jalan` varchar(128) NOT NULL,
+  `panjang` varchar(20) NOT NULL,
+  `lebar` varchar(20) NOT NULL,
+  `pekerasan` varchar(128) NOT NULL,
+  `latitude` varchar(20) NOT NULL,
+  `longitude` varchar(20) NOT NULL,
+  `image1` varchar(128) NOT NULL,
+  `image2` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `jalan`
+--
+
+INSERT INTO `jalan` (`id_jalan`, `id_desa`, `nama_jalan`, `panjang`, `lebar`, `pekerasan`, `latitude`, `longitude`, `image1`, `image2`) VALUES
+(55, 3, 'Jl. Yusuf Martadilaga', '20.000', '12.000', 'beton', '-6.121554', '106.155053', '2019-06-27.jpg', 's.jpg'),
+(56, 3, 'Jl. Ki Masjong', '40.000', '20.000', 'hotmik', '-6.117841', '106.152273', 'asasa.jpg', '2017-08-23.jpg'),
+(58, 6, 'Jl. Nasional 1', '21.314.312', '312.414', 'hotmik beton', '-6.096435', '106.166308', 'asasa1.jpg', '2017-08-231.jpg'),
+(59, 6, 'Jl. Bumi Agung II', '3.214.325', '32.131', 'hotmik', '-6.102228', '106.169683', 'client2.png', 'client3.png'),
+(60, 8, 'jalur baros', '300.000', '200.000', 'beton ', '432567', '3245', '2019-06-271.jpg', 'default.png');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jasa_kontruksi`
 --
 
@@ -41,52 +123,27 @@ CREATE TABLE `jasa_kontruksi` (
 --
 
 INSERT INTO `jasa_kontruksi` (`id_jasa`, `nama_jasa`, `alamat`, `no_tlp`, `email`) VALUES
-(1, 'cv. mahardika', 'pandeglang', '54678970', 'deniandiansyah40@gmail.com');
+(1, 'cv. mahardika', 'pandeglang', '54678970', 'deniandiansyah40@gmail.com'),
+(2, 'cv. jaya kusuma', ', Unyur, Kec. Serang, Kota Serang, Banten 42111', '09876543', 'cvjaya@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Struktur dari tabel `kecamatan`
 --
 
-CREATE TABLE `kategori` (
-  `id_kategori` int(11) NOT NULL,
-  `kategori` varchar(128) NOT NULL
+CREATE TABLE `kecamatan` (
+  `id_kecamatan` int(11) NOT NULL,
+  `kecamatan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data untuk tabel `kecamatan`
 --
 
-INSERT INTO `kategori` (`id_kategori`, `kategori`) VALUES
-(1, 'Gedung'),
-(2, 'Jalan'),
-(3, 'Irigasi');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `kontruksi`
---
-
-CREATE TABLE `kontruksi` (
-  `id_kontruksi` int(11) NOT NULL,
-  `id_kategori` int(2) NOT NULL,
-  `nama_kontruksi` varchar(128) NOT NULL,
-  `luas` varchar(128) NOT NULL,
-  `latitude` varchar(20) NOT NULL,
-  `longitude` varchar(20) NOT NULL,
-  `image` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `kontruksi`
---
-
-INSERT INTO `kontruksi` (`id_kontruksi`, `id_kategori`, `nama_kontruksi`, `luas`, `latitude`, `longitude`, `image`) VALUES
-(47, 1, 'Graha Pancasila Pandeglang', '20000', '-6.310603', '106.106038', '2017-08-23.jpg'),
-(48, 2, 'jln amd', '20000', '-6.320887', '106.116329', 'sasaaa.jpg'),
-(49, 3, 'Irigasi Cibinuangen', '39999', '-6.800681', '105.906005', 'default.png');
+INSERT INTO `kecamatan` (`id_kecamatan`, `kecamatan`) VALUES
+(1, 'baros'),
+(2, 'cikesal');
 
 -- --------------------------------------------------------
 
@@ -96,7 +153,7 @@ INSERT INTO `kontruksi` (`id_kontruksi`, `id_kategori`, `nama_kontruksi`, `luas`
 
 CREATE TABLE `pengaduan_masyarakat` (
   `id_pengaduan` int(11) NOT NULL,
-  `id_kontruksi` varchar(12) NOT NULL,
+  `id_jalan` varchar(12) NOT NULL,
   `nama_masyarakat` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
   `no_tlp` int(15) NOT NULL,
@@ -108,9 +165,9 @@ CREATE TABLE `pengaduan_masyarakat` (
 -- Dumping data untuk tabel `pengaduan_masyarakat`
 --
 
-INSERT INTO `pengaduan_masyarakat` (`id_pengaduan`, `id_kontruksi`, `nama_masyarakat`, `email`, `no_tlp`, `image`, `keterangan`) VALUES
-(5, '49', 'deni', 'denias@rocketmail.com', 98765, 'client1.png', 'rusak'),
-(6, '47', 'deni', 'denias@rocketmail.com', 345678, '2019-06-27.jpg', 'rusak');
+INSERT INTO `pengaduan_masyarakat` (`id_pengaduan`, `id_jalan`, `nama_masyarakat`, `email`, `no_tlp`, `image`, `keterangan`) VALUES
+(9, '59', 'deni', 'denias@rocketmail.com', 987, 'asasa2.jpg', 'ruksak'),
+(10, '55', 'ddd', 'deniandiansyah40@gmail.com', 9876, 'asasa3.jpg', 'ruksak');
 
 -- --------------------------------------------------------
 
@@ -119,17 +176,16 @@ INSERT INTO `pengaduan_masyarakat` (`id_pengaduan`, `id_kontruksi`, `nama_masyar
 --
 
 CREATE TABLE `proyek` (
-  `id_proyek` int(11) NOT NULL,
-  `id_kontruksi` int(11) NOT NULL,
+  `id_proyek` varchar(25) NOT NULL,
+  `id_jalan` int(11) NOT NULL,
   `kategori` varchar(20) NOT NULL,
   `id_jasa` int(3) NOT NULL,
   `tanggal_kontrak` date NOT NULL,
   `akhir_kontrak` date NOT NULL,
   `pelaksanaan` date NOT NULL,
   `sumber_dana` varchar(50) NOT NULL,
+  `anggaran` varchar(20) NOT NULL,
   `tahun_anggaran` int(4) NOT NULL,
-  `image1` varchar(128) NOT NULL,
-  `image2` varchar(128) NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -137,10 +193,10 @@ CREATE TABLE `proyek` (
 -- Dumping data untuk tabel `proyek`
 --
 
-INSERT INTO `proyek` (`id_proyek`, `id_kontruksi`, `kategori`, `id_jasa`, `tanggal_kontrak`, `akhir_kontrak`, `pelaksanaan`, `sumber_dana`, `tahun_anggaran`, `image1`, `image2`, `keterangan`) VALUES
-(15, 47, 'Pembangunan', 1, '2020-06-02', '2020-06-02', '2020-06-02', 'desas', 2022, 'man1.jpg', 'man2.jpg', 'dede'),
-(16, 47, 'Perbaikan', 1, '2020-06-01', '2020-07-11', '2020-06-02', 'kabupaten', 2020, '2018-02-21.jpg', '2019-06-27.jpg', 'Perbaikan lapang '),
-(17, 48, 'Pelebaran', 1, '2020-06-01', '2020-07-11', '2020-06-09', 'provinsi', 2020, 'sasaaa.jpg', 'sada.jpg', 'pelabarang jalan Kiri 2m kanan 2m');
+INSERT INTO `proyek` (`id_proyek`, `id_jalan`, `kategori`, `id_jasa`, `tanggal_kontrak`, `akhir_kontrak`, `pelaksanaan`, `sumber_dana`, `anggaran`, `tahun_anggaran`, `keterangan`) VALUES
+('P0200626001', 55, 'Pelebaran', 2, '2020-06-02', '2020-06-03', '2020-06-04', 'gggg', '66.666.666', 2023, 'dddd'),
+('P0200626002', 58, 'Perbaikan', 1, '2020-06-01', '2020-06-02', '2020-06-30', 'desa', '23.457.689', 2020, 'dasdasd'),
+('P0200628001', 60, 'Pelebaran', 2, '2020-05-31', '2020-07-11', '2020-06-01', 'desa', '40.000.000', 2020, 'pelabran jalan kiri 1 meter kana 1 meter');
 
 -- --------------------------------------------------------
 
@@ -151,23 +207,24 @@ INSERT INTO `proyek` (`id_proyek`, `id_kontruksi`, `kategori`, `id_jasa`, `tangg
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `nama` varchar(128) NOT NULL,
-  `kelamin` int(1) NOT NULL,
-  `image` varchar(128) NOT NULL,
   `no_tlp` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `alamat` text NOT NULL,
-  `date_created` int(11) NOT NULL
+  `date_created` int(11) NOT NULL,
+  `aktif` int(1) NOT NULL,
+  `akses` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama`, `kelamin`, `image`, `no_tlp`, `email`, `password`, `alamat`, `date_created`) VALUES
-(8, 'Deni andiansyah', 1, '20180828_163213.jpg', '089618840412', 'deniandiansyah40@gmail.com', '$2y$10$rqIZAzK8e2eHJbgKGB1dMe.RifnDQ1cnFjGmy9qZO6c4xhmX3Xebu', '', 1582478763),
-(18, 'Rafka Fatir Mahendra', 1, 'IMG-20180726-WA0009.jpg', '098765434567', 'hejok4765@gmail.com', '$2y$10$Cl6PtmJFjmIwbf6rqItp8OGfjdnUA7osbCjAGCvOD3MDJ6aWWc9Sq', '', 1584880389),
-(19, 'fikri zain', 1, 'default.jpg', '098765434567', 'fikrizain@yahoo.com', '$2y$10$bDOkgZHDxrejBEEyLptD6e8tX8rzjUIhA38tIga5JivD1eJHCpv.G', '', 1584881936);
+INSERT INTO `user` (`id_user`, `nama`, `no_tlp`, `email`, `password`, `date_created`, `aktif`, `akses`) VALUES
+(18, 'Rafka Fatir Mahendra', '098765434567', 'hejok4765a@gmail.com', '$2y$10$Cl6PtmJFjmIwbf6rqItp8OGfjdnUA7osbCjAGCvOD3MDJ6aWWc9Sq', 1584880389, 1, 1),
+(27, 'Deni andiansyah', '089618840412', 'deniandiansyah40@gmail.com', '$2y$10$N2noauWXbBgBjJeQ5lnwu.DHfYSpPegK.9L5yvoEVgAMnhSdvvYxm', 1592817802, 1, 3),
+(32, 'dede', '223', 'hejok4765s@gmail.com', '$2y$10$s7kIy85ap5WFxbbc3euFS.VrsQmLMYY83EZaEQu486ZIaSbf/1EiC', 1592906481, 1, 3),
+(33, 'faizal ardian', '09876543', 'hejok4765b@gmail.com', '$2y$10$4vjTISKlEuaXyW5.PgY3KOtWw/BOauJzYIG.tdcWCZuMxRI0DmeIS', 1593095825, 1, 3),
+(34, 'waluyo', '09876543', 'hejok4765@gmail.com', '$2y$10$9rCQtWoHuy9MWo3sFn7euezbN7iH0Z0tJLVMrTcqhLHj2VpfmKaNq', 1593349619, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -187,22 +244,34 @@ CREATE TABLE `user_token` (
 --
 
 --
+-- Indeks untuk tabel `desa`
+--
+ALTER TABLE `desa`
+  ADD PRIMARY KEY (`id_desa`);
+
+--
+-- Indeks untuk tabel `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`id_image`);
+
+--
+-- Indeks untuk tabel `jalan`
+--
+ALTER TABLE `jalan`
+  ADD PRIMARY KEY (`id_jalan`);
+
+--
 -- Indeks untuk tabel `jasa_kontruksi`
 --
 ALTER TABLE `jasa_kontruksi`
   ADD PRIMARY KEY (`id_jasa`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indeks untuk tabel `kecamatan`
 --
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kategori`);
-
---
--- Indeks untuk tabel `kontruksi`
---
-ALTER TABLE `kontruksi`
-  ADD PRIMARY KEY (`id_kontruksi`);
+ALTER TABLE `kecamatan`
+  ADD PRIMARY KEY (`id_kecamatan`);
 
 --
 -- Indeks untuk tabel `pengaduan_masyarakat`
@@ -233,46 +302,52 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `desa`
+--
+ALTER TABLE `desa`
+  MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `image`
+--
+ALTER TABLE `image`
+  MODIFY `id_image` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT untuk tabel `jalan`
+--
+ALTER TABLE `jalan`
+  MODIFY `id_jalan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
 -- AUTO_INCREMENT untuk tabel `jasa_kontruksi`
 --
 ALTER TABLE `jasa_kontruksi`
-  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT untuk tabel `kecamatan`
 --
-ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `kontruksi`
---
-ALTER TABLE `kontruksi`
-  MODIFY `id_kontruksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+ALTER TABLE `kecamatan`
+  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengaduan_masyarakat`
 --
 ALTER TABLE `pengaduan_masyarakat`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `proyek`
---
-ALTER TABLE `proyek`
-  MODIFY `id_proyek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

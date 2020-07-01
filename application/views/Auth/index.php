@@ -98,33 +98,18 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                   </div>
                 </div>
-                <?php
-                  $queryKategori = "SELECT * FROM kategori";
-                  $kategori = $this->db->query($queryKategori)->result_array();
-                   ?>
-
-                   <?php foreach ($kategori as $kategori): ?>
                     <div class="list-group list-kategori mt-4 mb-4 ">
-                    <a href="<?= base_url('auth/kontruksi/'.$kategori['id_kategori']); ?>" class="list-group-item list-group-item-action active">
-                        <h5 class="mb-1"><?= $kategori['kategori'] ?> <span class="float-right">&raquo;</span> </h5>
+                    <a href="<?= base_url('auth/jalan/'); ?>" class="list-group-item list-group-item-action active">
+                        <h5 class="mb-1">Data jalan <span class="float-right">&raquo;</span> </h5>
                     </a>
-
-                    <?php
-                      $queryKontruksi = "SELECT k.* FROM kontruksi k
-                      JOIN kategori i ON k.id_kategori = i.id_kategori
-                      WHERE i.id_kategori = ".$kategori['id_kategori']."
-                      ORDER BY k.id_kontruksi ASC";
-                      $kontruksi = $this->db->query($queryKontruksi)->result_array();
-                       ?>
-                    <?php foreach ($kontruksi as $kontruksi): ?>
-                      <a href="<?= base_url("auth/view/".$kontruksi['id_kontruksi']) ?>" class=" list-group-item-action">
+                    <?php foreach ($jalan as $jalan): ?>
+                      <a href="<?= base_url("auth/view/").$jalan['id_jalan'] ?>" class=" list-group-item-action">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <?= $kontruksi['nama_kontruksi'] ?>
+                          <?= $jalan['nama_jalan'] ?>
                         </li>
                       </a>
-                    </div>
                     <?php endforeach; ?>
-                   <?php endforeach; ?>
+                    </div>
               </div>
               <div class="col-xs-6  col-lg-4 col-md-12 ">
                 <div class="list-group">
@@ -136,7 +121,7 @@
                     <div class="d-flex w-100 justify-content-between">
                       <small class="text-muted"><?= $proyek['tanggal_kontrak']  ?></small>
                     </div>
-                    <p class="mb-1"><?= $proyek['kategori'].' '.$proyek['nama_kontruksi'] ?></p>
+                    <p class="mb-1"><?= $proyek['kategori'].' '.$proyek['nama_jalan'] ?></p>
                     <p class="mb-1">Nama Tender <?= $proyek['nama_jasa']?></p>
                     <small class="text-muted"><?= $proyek['pelaksanaan']  ?></small>
                   </a>

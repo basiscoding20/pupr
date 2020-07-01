@@ -37,13 +37,39 @@ function details() {
         $('#akhir_kontrak').html(data.akhir_kontrak);
         $('#pelaksanaan').html(data.pelaksanaan);
         $('#tahun_anggaran').html(data.tahun_anggaran);
+        const data2 = rubahRupiah(data.anggaran);
+        $('#anggaran').html('Rp. '+data2);
         $('#keterangan').html(data.keterangan);
-        $('.image1 img').attr('src','http://localhost/aplikasi/assets/img/proyek/'+data.image1);
-        $('.image2 img').attr('src','http://localhost/aplikasi/assets/img/proyek/'+data.image2);
+    }
+  });
+  $.ajax({
+    url: 'http://localhost/aplikasi/auth/getDataImage',
+    data: {id : id},
+    method: 'post',
+    dataType: 'json',
+    success: function(data){
+        $('.image1 label').html(data[0].progres);
+        $('.image2 label').html(data[1].progres);
+        $('.image3 label').html(data[2].progres);
+        $('.image1 img').attr('src','http://localhost/aplikasi/assets/img/proyek/'+data[0].image);
+        $('.image2 img').attr('src','http://localhost/aplikasi/assets/img/proyek/'+data[1].image);
+        $('.image3 img').attr('src','http://localhost/aplikasi/assets/img/proyek/'+data[2].image);
     }
   });
 
 });
+}
+function rubahRupiah(data) {
+  let	rubahString = data.toString(),
+  	sisa 	= rubahString.length % 3,
+  	rupiah 	= rubahString.substr(0, sisa),
+  	ribuan 	= rubahString.substr(sisa).match(/\d{3}/g);
+
+  if (ribuan) {
+  	separator = sisa ? '.' : '';
+  	rupiah += separator + ribuan.join('.');
+  }
+  return rupiah;
 }
 function pengaduan() {
   $('.view-pengaduan').on('click', function() {

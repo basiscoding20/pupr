@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin') ?>">
     <div class="sidebar-brand-icon ">
     <i class="fas fa-code"></i>
     </div>
@@ -14,10 +14,14 @@
   <div class="sidebar-heading ">
     Dashboard
   </div>
-
+  <li class="nav-item">
+    <a class="nav-link" href="<?= base_url('admin') ?>">
+      <i class="fas fa-tachometer-alt"></i>
+      <span>Dashboard</span></a>
+  </li>
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="<?= base_url('admin/profile') ?>">
       <i class="fas fa-user"></i>
       <span>User</span></a>
   </li>
@@ -27,15 +31,16 @@
     Master
   </div>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetree" aria-expanded="true" aria-controls="collapsetree">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone" aria-expanded="true" aria-controls="collapseone">
       <i class="fas fa-stream"></i>
-      <span>Master</span>
+      <span>Data Master</span></a>
     </a>
-    <div id="collapsetree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseone" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="<?= base_url('Kategori') ?>">Data Kategori</a>
-        <a class="collapse-item" href="<?= base_url('Kontruksi') ?>">Data kontruksi</a>
-        <a class="collapse-item" href="<?= base_url('Jasa_Kontruksi') ?>">Data Jasa kontruksi</a>
+        <a class="collapse-item" href="<?= base_url('admin/dataUser') ?>">Data User</a>
+        <a class="collapse-item" href="<?= base_url('admin/dataDesa') ?>">Data Desa</a>
+        <a class="collapse-item" href="<?= base_url('admin/dataJalan') ?>">Data Jalan</a>
+        <a class="collapse-item" href="<?= base_url('Jasa_Kontruksi') ?>">Data Jasa Kontruksi</a>
       </div>
     </div>
   </li>
@@ -66,7 +71,7 @@
   </div>
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="<?= base_url('respon_masyarakat') ?>">
+    <a class="nav-link" href="<?= base_url('pengaduan') ?>">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Pengaduan masyarakat</span></a>
   </li>

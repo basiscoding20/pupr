@@ -5,12 +5,25 @@ class auth_model extends CI_Model
 {
   public function getKontruksi($id = null)
   {
-    $this->db->select('k.*,i.kategori');
-    $this->db->from('kontruksi k ');
-    $this->db->join('kategori  i', 'k.id_kategori=i.id_kategori');
-    $this->db->order_by('k.id_kontruksi', 'DESC');
+    $this->db->select('j.*,d.nama_desa');
+    $this->db->from('jalan j ');
+    $this->db->join('desa  d', 'd.id_desa=j.id_desa');
+    $this->db->order_by('j.id_jalan', 'DESC');
     if ($id != null) {
-      $this->db->where('k.id_kontruksi' , $id);
+      $this->db->where('j.id_jalan' , $id);
+      return $this->db->get_where()->row_array();
+    }else {
+      return $this->db->get_where()->result_array();
+    }
+  }
+  public function getPengaduan($id = null)
+  {
+    $this->db->select('p.*,k.nama_jalan');
+    $this->db->from('pengaduan_masyarakat p ');
+    $this->db->join('jalan  k', 'k.id_jalan=p.id_jalan');
+    $this->db->order_by('p.id_pengaduan', 'DESC');
+    if ($id != null) {
+      $this->db->where('k.id_pengaduan' , $id);
       return $this->db->get_where()->row_array();
     }else {
       return $this->db->get_where()->result_array();
@@ -19,35 +32,22 @@ class auth_model extends CI_Model
   public function getView($type,$id)
   {
     if ($type ==  'header') {
-      $this->db->select('i.*,k.kategori');
-      $this->db->from('kontruksi i');
-      $this->db->join('kategori k', 'i.id_kategori=k.id_kategori');
-      $this->db->where('i.id_kontruksi' , $id);
+      $this->db->select('j.*,d.nama_desa');
+      $this->db->from('jalan j');
+      $this->db->join('desa d', 'j.id_desa=d.id_desa');
+      $this->db->where('j.id_jalan' , $id);
       return $this->db->get_where()->row_array();
     }else if ($type == 'proyek') {
-      $this->db->select('p.*,k.nama_kontruksi, j.nama_jasa');
+      $this->db->select('p.*,k.nama_jalan, j.nama_jasa');
       $this->db->from('proyek p');
-      $this->db->join('kontruksi k', 'p.id_kontruksi=k.id_kontruksi');
+      $this->db->join('jalan k', 'p.id_jalan=k.id_jalan');
       $this->db->join('jasa_kontruksi j', 'p.id_jasa=j.id_jasa');
       $this->db->order_by('p.id_proyek', 'DESC');
-      $this->db->where('k.id_kontruksi' , $id);
+      $this->db->where('k.id_jalan' , $id);
       return $this->db->get_where()->result_array();
     }
   }
-  public function getBangunanView($type,$id)
-  {
-    if ($type ==  'header') {
-      return $this->db->get_where('bangunan', ['id_bangunan' => $id])->row_array();
-    }else if ($type == 'proyek') {
-      $this->db->select('p.*,k.nama_kontruksi');
-      $this->db->from('proyek_bangunan p');
-      $this->db->join('bangunan b', 'p.id_bangunan=b.id_bangunan');
-      $this->db->join('kontruksi k', 'p.id_kontruksi=k.id_kontruksi');
-      $this->db->order_by('p.id_proyek', 'DESC');
-      $this->db->where('b.id_bangunan' , $id);
-      return $this->db->get_where()->result_array();
-    }
-  }
+
 
   public function getDetails($id)
   {

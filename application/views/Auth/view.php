@@ -57,20 +57,26 @@
                       <table class="table table-bordered p-0">
                       <tbody>
                         <tr>
-                          <th scope="row">Kode Kontruksi</th>
-                          <td colspan="3"><?= $header['id_kontruksi'] ?></td>
+                          <th scope="row">Kode Jalan</th>
+                          <td colspan="3"><?= $header['id_jalan'] ?></td>
                         </tr>
                         <tr>
-                          <th scope="row">Nama Kontruksi</th>
-                          <td colspan="3"><?= $header['nama_kontruksi'] ?></td>
+                          <th scope="row">Nama Jalan</th>
+                          <td colspan="3"><?= $header['nama_jalan'] ?></td>
                         </tr>
                         <tr>
-                          <th scope="row">Kategori</th>
-                          <td colspan="3"><?= $header['kategori'] ?></td>
+                          <th scope="row">Desa</th>
+                          <td colspan="3"><?= $header['nama_desa'] ?></td>
                         </tr>
                         <tr>
-                          <th scope="row">Luas</th>
-                          <td colspan="3"><?= $header['luas'] ?></td>
+                          <th scope="row">Panjang</th>
+                          <td ><?= $header['panjang'] ?></td>
+                          <th >Lebar</th>
+                          <td><?= $header['lebar'] ?></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Pekerasan</th>
+                          <td colspan="3"><?= $header['pekerasan'] ?></td>
                         </tr>
                         <tr>
                           <th scope="row">Latitude</th>
@@ -94,7 +100,6 @@
                       <thead>
                         <tr>
                           <th scope="col">Kd proyek</th>
-                          <th scope="col">Kontruksi</th>
                           <th scope="col">kategori</th>
                           <th scope="col">nama Jasa</th>
                           <th scope="col">tanggal_kontrak</th>
@@ -105,7 +110,6 @@
                       <?php  foreach ($proyek as $proyek): ?>
                         <tr>
                           <td><?= $proyek['id_proyek'] ?></td>
-                          <td><?= $proyek['nama_kontruksi'] ?></td>
                           <td><?= $proyek['kategori'] ?></td>
                           <td><?= $proyek['nama_jasa'] ?></td>
                           <td><?= $proyek['tanggal_kontrak'] ?></td>
@@ -188,6 +192,10 @@
               <td id="tahun_anggaran"></td>
             </tr>
             <tr>
+              <th scope="row">Total anggaran</th>
+              <td colspan="3" id="anggaran"></td>
+            </tr>
+            <tr>
               <th scope="row">Keterangan</th>
               <td colspan="3" id="keterangan"></td>
             </tr>
@@ -195,12 +203,20 @@
         </table>
         </div>
         <div class="row">
-          <div class="col-md-6 image1">
+          <div class="col-md-4 image1">
+            <label for=""></label>
             <div class="form-group">
               <img src=""class="img-thumbnail" >
             </div>
           </div>
-          <div class="col-md-6 image2">
+          <div class="col-md-4 image2">
+            <label for=""></label>
+            <div class="form-group">
+              <img src=""class="img-thumbnail" >
+            </div>
+          </div>
+          <div class="col-md-4 image3">
+            <label for=""></label>
             <div class="form-group">
               <img src=""class="img-thumbnail" >
             </div>
@@ -226,7 +242,7 @@
           <table class="table table-bordered p-0">
           <tbody>
             <tr>
-              <th scope="row">Kode Proyek</th>
+              <th scope="row">Kode Pengaduan</th>
               <td colspan="3" id="id_pengaduan"></td>
             </tr>
             <tr>
